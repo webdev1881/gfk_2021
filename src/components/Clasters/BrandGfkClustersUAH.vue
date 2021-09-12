@@ -5,7 +5,7 @@
    <Loader />
   </div>
 
-  <div class="title" v-show="!isLoading">GFK units</div>
+  <div class="title" v-show="!isLoading">GFK uah</div>
 
   <div class="wr">
     <label v-show="!isLoading" class="check" ><input type="checkbox" checked="checked" @click.prevent="checkToggle" /><span>show / hide</span></label>
@@ -24,7 +24,7 @@ import { Line } from "vue-chartjs";
 
 
 export default {
- name: "BrandGfkClusters",
+ name: "BrandGfkClustersUAH",
  extends: Line,
  props: ['brand', 'smart'],
  data: () => ({
@@ -106,6 +106,7 @@ export default {
  }),
 
  async mounted() {
+
   this.brands = await this.$store.dispatch("fetchBrandClusters",this.urlGfk)
   this.getBrandData()
   this.render()
@@ -130,7 +131,6 @@ export default {
     } else {
       this.idx = "UNITS"
     }
-
      this.brandValueGfk.length ? this.render() : this.$data._chart.clear()
    }
  },

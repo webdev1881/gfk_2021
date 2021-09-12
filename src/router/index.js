@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Brands from '../views/Brands.vue'
 
 Vue.use(VueRouter)
 
@@ -23,7 +24,7 @@ const routes = [
   {
     path: '/brands',
     name: 'brands',
-    component: () => import('../views/Brands.vue')
+    component: Brands
   },
 ]
 

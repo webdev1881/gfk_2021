@@ -31,7 +31,7 @@ export default {
                 if (clasters[c] === res[v].SIZE) {
                   weekClaster[clasters[c]].UNITS = weekClaster[clasters[c]].UNITS + +res[v]["Sales Units"]
                   weekClaster[clasters[c]].UAH = weekClaster[clasters[c]].UAH + +res[v]["Sales Value UAH"]
-                  if ( res[v].SmartTV === "Smart" ) {
+                  if ( res[v].SmartTV === "Smart TV" ) {
                     weekClaster[clasters[c]].SmartUNITS = weekClaster[clasters[c]].SmartUNITS + +res[v]["Sales Units"]
                     weekClaster[clasters[c]].SmartUAH = weekClaster[clasters[c]].SmartUAH + +res[v]["Sales Value UAH"]
                   } else {
@@ -62,14 +62,26 @@ export default {
               case g >= 33 && g <= 40:
                 weekGroupClaster[43].UNITS += weekClaster[g].UNITS
                 weekGroupClaster[43].UAH += weekClaster[g].UAH
+                weekGroupClaster[43].SmartUNITS += weekClaster[g].SmartUNITS
+                weekGroupClaster[43].NoSmartUNITS += weekClaster[g].NoSmartUNITS
+                weekGroupClaster[43].SmartUAH += weekClaster[g].SmartUAH
+                weekGroupClaster[43].NoSmartUAH += weekClaster[g].NoSmartUAH
                 break;
               case g >= 46 && g <= 55:
                 weekGroupClaster[50].UNITS += weekClaster[g].UNITS
                 weekGroupClaster[50].UAH += weekClaster[g].UAH
+                weekGroupClaster[50].SmartUNITS += weekClaster[g].SmartUNITS
+                weekGroupClaster[50].NoSmartUNITS += weekClaster[g].NoSmartUNITS
+                weekGroupClaster[50].SmartUAH += weekClaster[g].SmartUAH
+                weekGroupClaster[50].NoSmartUAH += weekClaster[g].NoSmartUAH
                 break;
               case g >= 56:
                 weekGroupClaster['60 >'].UNITS += weekClaster[g].UNITS
                 weekGroupClaster['60 >'].UAH += weekClaster[g].UAH
+                weekGroupClaster['60 >'].SmartUNITS += weekClaster[g].SmartUNITS
+                weekGroupClaster['60 >'].NoSmartUNITS += weekClaster[g].NoSmartUNITS
+                weekGroupClaster['60 >'].SmartUAH += weekClaster[g].SmartUAH
+                weekGroupClaster['60 >'].NoSmartUAH += weekClaster[g].NoSmartUAH
                 break;
             }
           }
@@ -80,7 +92,7 @@ export default {
         brandsValue.push({ "brand": brands[b], "weeks": weeksValue })
       }
 
-// console.log(brandsValue);      
+  // console.log(brandsValue)
       return brandsValue
 
     }

@@ -9,19 +9,32 @@
 
 
 
+
+
     <div class="brands" v-show="isloadedBrandGfk">
-        <div class="title">Brands</div>
-        
-        <div class="select" > 
-            <select class="wrap" ref="select" v-model="brand" >
-            <option v-for="b in brands" :key="b" :value="b">{{ b }}</option>
-            </select>
-            <label>Materialize Select</label>
+
+        <div class="title">Brands | Smart</div>
+
+        <div class="filters">
+            <div class="select" > 
+                <select class="wrap" ref="select" v-model="brand" >
+                <option v-for="b in brands" :key="b" :value="b">{{ b }}</option>
+                </select>
+            </div>
+
+            <div class="select" > 
+                <select class="wrap" ref="smart" v-model="smart" >
+                <option v-for="s in smarts" :key="s" >{{ s }}</option>
+                </select>
+            </div>
         </div>
+        
+       
+
 
         <div class="charts">
-            <BrandGfkClusters :brand="brand" @changeLoadingBrand="loadedBrandGfk" />
-            <BrandYugClusters :brand="brand" @changeLoadingBrand="loadedBrandYug" />
+            <BrandGfkClusters :brand="brand" :smart="smart"  />
+            <BrandGfkClustersUAH :brand="brand" :smart="smart"  />
         </div>
         <div class="arrows">
             <button class="waves-effect waves-light btn-small" @click="addWeeksClasterBrand">
@@ -31,6 +44,8 @@
             <i class="material-icons dp48">keyboard_arrow_right</i>
             </button>
         </div>
+
+
     </div>
   
   
@@ -40,9 +55,10 @@
 <script>
 
 import BrandGfkClusters from "@/components/Clasters/BrandGfkClusters";
-import BrandYugClusters from "@/components/Clasters/BrandYugClusters";
+import BrandGfkClustersUAH from "@/components/Clasters/BrandGfkClustersUAH";
 
 import brands from "../data/brands";
+import smarts from "../data/smart";
 
 export default {
  name: "clasters",
@@ -50,16 +66,28 @@ export default {
   isloadedBrandGfk: true,
   isloadedBrandYug: true,
   brands: [],
+  smarts: [],
   brand: "ERGO",
+  smart: "All",
+
  }),
 
  async mounted() {
 
   this.brands = brands;
+  this.smarts = smarts;
+
   Chart.defaults.global.plugins.datalabels.display = false
+
+//   console.log(this.smart);
+
 
   setTimeout(() => this.select = M.FormSelect.init(this.$refs.select))
   setTimeout(() => this.select = M.Collapsible.init(this.$refs.collapsible))
+
+  setTimeout(() => this.select = M.FormSelect.init(this.$refs.smart))
+
+
 
  },
 
@@ -91,7 +119,7 @@ export default {
 
  components: {
   BrandGfkClusters,
-  BrandYugClusters
+  BrandGfkClustersUAH
  },
 };
 </script>
@@ -146,6 +174,10 @@ hr {
 
 .brand {
  width: 50%;
+}
+
+.filters {
+    display: flex;
 }
 
 
