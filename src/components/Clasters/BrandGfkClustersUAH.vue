@@ -37,7 +37,7 @@ export default {
   select: null,
   current: null,
   brands: [],
-  idx: 'UNITS',
+  idx: 'UAH',
   options: {
       responsive: true,
 
@@ -55,16 +55,16 @@ export default {
           backgroundColor: function(context) {                 
             return context.dataset.backgroundColor
           },
-        //   formatter: function(value, context) {
-        //     return (value/100).toFixed(1)
-        //   },
+          formatter: function(value, context) {
+            return (value/1000000).toFixed(1)
+          },
           display: 'auto',
           anchor: 'start',
           align : 'left',
           color: 'black',
           value: {
             callback: function (label, index, labels) {
-              return (value).toFixed(1);
+              return (value).toFixed(1)
             }
           },
         }
@@ -75,9 +75,9 @@ export default {
           {
             ticks: {
               backdropColor: 'black',
-              // callback: function (label, index, labels) {               
-              //   return (label / 100).toFixed(0) + "k";
-              // },
+              callback: function (label, index, labels) {               
+                return (label / 1000000).toFixed(1) + " M";
+              },
             },
             scaleLabel: {
               display: true,
@@ -106,8 +106,8 @@ export default {
  }),
 
  async mounted() {
-
-  this.brands = await this.$store.dispatch("fetchBrandClusters",this.urlGfk)
+   this.brands = await this.$root.$options.getAll
+  // this.brands = await this.$store.dispatch("fetchBrandClusters",this.urlGfk)
   this.getBrandData()
   this.render()
   this.isLoading = false

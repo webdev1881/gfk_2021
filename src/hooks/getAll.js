@@ -1,8 +1,10 @@
-export default {
-  actions: {
-    async fetchBrandClusters({ dispatch, commit }, url) {
-      const res = await fetch(url).then(res => res.json())
-      // console.log(res);
+// import brands from '../../ '
+
+
+
+async function getAll() {
+    const res = await fetch("./gfk.json").then(res => res.json()).finally()
+
       const brands = Array.from(new Set(res.map(({ BRAND }) => BRAND)))
       let weeks = Array.from(new Set(res.map(({ Week }) => Week)))
       const clasters = Array.from(new Set(res.map(({ SIZE }) => SIZE)))
@@ -92,9 +94,11 @@ export default {
         brandsValue.push({ "brand": brands[b], "weeks": weeksValue })
       }
 
-      // console.log(brandsValue)
-      return brandsValue
-
-    }
-  }
+    //   console.log(brandsValue)
+      return  brandsValue
 }
+
+
+
+export default getAll()
+

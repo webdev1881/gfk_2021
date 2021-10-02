@@ -106,11 +106,19 @@ export default {
  }),
 
  async mounted() {
-  this.brands = await this.$store.dispatch("fetchBrandClusters",this.urlGfk)
+
+  // this.$getAll()
+  //  console.log( this.$root.$options.getAll );
+
+  this.brands = await this.$root.$options.getAll
+
+  console.log(this.brands);
+
   this.getBrandData()
   this.render()
   this.isLoading = false
   this.onInput()
+
  },
 
  watch: {
