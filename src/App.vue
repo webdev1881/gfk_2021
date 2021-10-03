@@ -1,6 +1,10 @@
 <template>
   <div id="app">
 
+    <div v-show="!log" class="pass">
+      <input v-model="pass" type="password" placeholder="пароль" autofocus class="pass_inp">
+    <!--  <button class="waves-effect waves-light btn-small" @click="enter">Войти</button> -->
+    </div>
 
     <div class="layout">
 
@@ -9,7 +13,6 @@
         <router-view />
       </div>
       
-
     </div>
 
   </div>
@@ -22,15 +25,27 @@ import Home from "@/views/Home";
 import Sidebar from "@/views/Sidebar";
 
 
-console.log(  );
-
 export default {
   name: "app",
+  data: () => ({
+    pass: '',
+    log: false
+  }),
+  // methods: {
+  //   enter() {
+  //     if( this.pass === '0099' ) { this.log = true }
+  //   }
+  // },
+  watch: {
+    pass(val) {
+      if( val === '0099' ) { this.log = true }
+    }
+  },
   components: {
     Sidebar,
     Home,  
   }
-};
+}
 </script>
 
 <style lang="scss">
@@ -54,10 +69,27 @@ export default {
 
 .layout {
   display: flex;
-  height: 900px;
+  height: 100vh;
 }
 .sidebar {
 }
 .home {
+}
+.pass {
+  display: flex;
+  flex-direction: column;
+  padding: 200px;
+  position: absolute;
+  background-color: #294750;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+}
+.pass_inp {
+  caret-color: white;
+  // width: 50%!important;
+  // margin: 10px auto!important;
 }
 </style>

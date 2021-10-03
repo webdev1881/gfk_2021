@@ -1,6 +1,6 @@
 <template>
-  <div ref="sidebar" :class="{toggle: isActive}" class="sidebar">
-    <img src="er.svg" alt />
+  <div ref="sidebar" :class="{toggle: isActive, sidebar: !isActive}">
+    <img src="gfk_logo.png" alt />
 
     <a class="a-togg" href="#" @click.prevent="toggleNav">
       <i class="lines material-icons black-text">dehaze</i>
@@ -33,11 +33,11 @@ export default {
   props: ["value"],
   data: () => ({
     links: [
-      { title: "Главная", icon: "cloud", url: "/", exact: true },
-      { title: "Кластеры", icon: "cloud", url: "/clasters" },
-      { title: "ASP", icon: "cloud", url: "/asp" },
-      { title: "Brands", icon: "cloud", url: "/brands" },
-      { title: "TeST", icon: "cloud", url: "/test" },
+      { title: "Главная", icon: "home", url: "/", exact: true },
+      { title: "Кластеры", icon: "apps", url: "/clasters" },
+      { title: "ASP", icon: "assessment", url: "/asp" },
+      { title: "Brands", icon: "tv", url: "/brands" },
+      { title: "settings", icon: "settings", url: "/test" },
     ],
     isActive: false
   }),
@@ -53,14 +53,11 @@ export default {
 
 <style lang="scss" >
 img {
-  width: 133px;
+  width: 110px;
   display: block;
-  margin: 5px 0 5px 0;
+  margin: 5px;
 }
-.toggle {
-  width: 47px !important;
-  padding-right: 0 !important;
-}
+
 .a-togg {
   color: black;
   .lines {
@@ -69,9 +66,21 @@ img {
   }
 }
 
+.toggle {
+  width: 47px;
+  padding-right: 0;
+  z-index: 1;
+  min-width: 50px; // ______________________________
+  margin-left: 3px;
+  box-shadow: 2px 0px 0px gray;
+  transition: all 0.25s;
+  overflow: hidden;
+}
+
 .sidebar {
   z-index: 1;
-  width: 152px; // ______________________________
+  width: 140px;
+  min-width: 115px; // ______________________________
   margin-left: 3px;
   box-shadow: 2px 0px 0px gray;
   transition: all 0.25s;
@@ -102,5 +111,8 @@ img {
       margin-right: 15px;
     }
   }
+}
+.item:last-child > a {
+  color: #9b9ea5;
 }
 </style>
