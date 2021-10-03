@@ -3,7 +3,6 @@
 
     <div v-show="!log" class="pass">
       <input v-model="pass" type="password" placeholder="пароль" autofocus class="pass_inp">
-    <!--  <button class="waves-effect waves-light btn-small" @click="enter">Войти</button> -->
     </div>
 
     <div class="layout">
@@ -31,11 +30,6 @@ export default {
     pass: '',
     log: false
   }),
-  // methods: {
-  //   enter() {
-  //     if( this.pass === '0099' ) { this.log = true }
-  //   }
-  // },
   watch: {
     pass(val) {
       if( val === '0099' ) { this.log = true }
